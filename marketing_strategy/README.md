@@ -1,39 +1,38 @@
+# 用于营销策略的 AI 团队
 
-# AI Crew for Marketing Strategy
-## Introduction
-This project demonstrates the use of the CrewAI framework to automate the creation of a marketing strategy. CrewAI orchestrates autonomous AI agents, enabling them to collaborate and execute complex tasks efficiently.
+## 简介
 
-By [@joaomdmoura](https://x.com/joaomdmoura)
+本项目演示了如何使用 CrewAI 框架来自动创建营销策略。CrewAI 对自主 AI 代理进行编排，使其能够高效地协作和执行复杂的任务。
 
-- [CrewAI Framework](#crewai-framework)
-- [Running the script](#running-the-script)
-- [Details & Explanation](#details--explanation)
-- [Contributing](#contributing)
-- [Support and Contact](#support-and-contact)
-- [License](#license)
+- [CrewAI 框架](#crewai-框架)
+- [运行脚本](#运行脚本)
+- [详细信息和说明](#详细信息和说明)
+- [贡献](#贡献)
+- [支持和联系](#支持和联系)
+- [许可证](#许可证)
 
-## CrewAI Framework
-CrewAI is designed to facilitate the collaboration of role-playing AI agents. In this example, these agents work together to create a comprehensive marketing strategy and develop compelling marketing content.
+## CrewAI 框架
+CrewAI 旨在促进扮演不同角色的 AI 代理之间的协作。在本示例中，这些代理协同工作以创建全面的营销策略并开发引人注目的营销内容。
 
-## Running the Script
-It uses GPT-4o by default so you should have access to that to run it.
+## 运行脚本
+本项目可采用两种方式运行。
+1） 通过Ollama运行本地大型语言模型
+2） 通过接口运行云端大型语言模型
 
-***Disclaimer:** This will use gpt-4o unless you change it to use a different model, and by doing so it may incur in different costs.*
+- **配置环境**：复制 `.env.example` 并根据需要设置 [OpenAI](https://platform.openai.com/api-keys) 和其他工具的环境变量，例如 [Serper](serper.dev)。
+- **安装依赖项**：运行 `poetry lock && poetry install`。
+- **自定义**：修改 `src/marketing_posts/main.py` 以为您的代理和任务添加自定义输入。
+- **进一步自定义**：查看 `src/marketing_posts/config/agents.yaml` 以更新您的代理，并查看 `src/marketing_posts/config/tasks.yaml` 以更新您的任务。
+- **执行脚本**：运行 `poetry run marketing_posts` 并输入您的项目详细信息。
 
-- **Configure Environment**: Copy `.env.example` and set up the environment variables for [OpenAI](https://platform.openai.com/api-keys) and other tools as needed, like [Serper](serper.dev).
-- **Install Dependencies**: Run `poetry lock && poetry install`.
-- **Customize**: Modify `src/marketing_posts/main.py` to add custom inputs for your agents and tasks.
-- **Customize Further**: Check `src/marketing_posts/config/agents.yaml` to update your agents and `src/marketing_posts/config/tasks.yaml` to update your tasks.
-- **Execute the Script**: Run `poetry run marketing_posts` and input your project details.
+## 详细信息和说明
+- **运行脚本**：执行 `poetry run marketing_posts`。该脚本将利用 CrewAI 框架生成详细的营销策略。
+- **关键组件**：
+  - `src/marketing_posts/main.py`：主脚本文件。
+  - `src/marketing_posts/crew.py`：主要的团队文件，代理和任务在此汇集，主要逻辑在此执行。
+  - `src/marketing_posts/config/agents.yaml`：用于定义代理的配置文件。
+  - `src/marketing_posts/config/tasks.yaml`：用于定义任务的配置文件。
+  - `src/marketing_posts/tools`：包含代理使用的工具类。
 
-## Details & Explanation
-- **Running the Script**: Execute `poetry run marketing_posts`. The script will leverage the CrewAI framework to generate a detailed marketing strategy.
-- **Key Components**:
-  - `src/marketing_posts/main.py`: Main script file.
-  - `src/marketing_posts/crew.py`: Main crew file where agents and tasks come together, and the main logic is executed.
-  - `src/marketing_posts/config/agents.yaml`: Configuration file for defining agents.
-  - `src/marketing_posts/config/tasks.yaml`: Configuration file for defining tasks.
-  - `src/marketing_posts/tools`: Contains tool classes used by the agents.
-
-## License
-This project is released under the MIT License.
+## 许可证
+本项目根据 MIT 许可证发布。

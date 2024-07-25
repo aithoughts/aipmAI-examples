@@ -2,35 +2,44 @@ from typing import List
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 
-# Uncomment the following line to use an example of a custom tool
+# 取消注释以下行以使用自定义工具示例
 # from marketing_posts.tools.custom_tool import MyCustomTool
 
-# Check our tools documentations for more information on how to use them
+# 查看我们的工具文档以获取有关如何使用它们的更多信息
 from crewai_tools import SerperDevTool, ScrapeWebsiteTool
 from pydantic import BaseModel, Field
 
+# 取消注释以下行以使用Ollama
+# from langchain_community.llms import Ollama
+# import os
+# os.environ["OPENAI_API_KEY"] = "NA"
+
+# llm = Ollama(
+#     model = "mistral",
+#     base_url = "http://localhost:11434")
+
 class MarketStrategy(BaseModel):
-	"""Market strategy model"""
-	name: str = Field(..., description="Name of the market strategy")
-	tatics: List[str] = Field(..., description="List of tactics to be used in the market strategy")
-	channels: List[str] = Field(..., description="List of channels to be used in the market strategy")
-	KPIs: List[str] = Field(..., description="List of KPIs to be used in the market strategy")
+	"""市场策略模型"""
+	name: str = Field(..., description="市场策略的名称")
+	tatics: List[str] = Field(..., description="市场策略中使用的策略列表")
+	channels: List[str] = Field(..., description="市场策略中使用的渠道列表")
+	KPIs: List[str] = Field(..., description="市场策略中使用的关键绩效指标列表")
 
 class CampaignIdea(BaseModel):
-	"""Campaign idea model"""
-	name: str = Field(..., description="Name of the campaign idea")
-	description: str = Field(..., description="Description of the campaign idea")
-	audience: str = Field(..., description="Audience of the campaign idea")
-	channel: str = Field(..., description="Channel of the campaign idea")
+	"""活动创意模型"""
+	name: str = Field(..., description="活动创意的名称")
+	description: str = Field(..., description="活动创意的描述")
+	audience: str = Field(..., description="活动创意的目标受众")
+	channel: str = Field(..., description="活动创意的渠道")
 
 class Copy(BaseModel):
-	"""Copy model"""
-	title: str = Field(..., description="Title of the copy")
-	body: str = Field(..., description="Body of the copy")
+	"""文案模型"""
+	title: str = Field(..., description="文案标题")
+	body: str = Field(..., description="文案正文")
 
 @CrewBase
 class MarketingPostsCrew():
-	"""MarketingPosts crew"""
+	"""营销帖子团队"""
 	agents_config = 'config/agents.yaml'
 	tasks_config = 'config/tasks.yaml'
 
@@ -39,8 +48,10 @@ class MarketingPostsCrew():
 		return Agent(
 			config=self.agents_config['lead_market_analyst'],
 			tools=[SerperDevTool(), ScrapeWebsiteTool()],
+			max_iter=10,
 			verbose=True,
 			memory=False,
+			# llm = llm
 		)
 
 	@agent
@@ -48,16 +59,20 @@ class MarketingPostsCrew():
 		return Agent(
 			config=self.agents_config['chief_marketing_strategist'],
 			tools=[SerperDevTool(), ScrapeWebsiteTool()],
+			max_iter=10,
 			verbose=True,
 			memory=False,
+			# llm = llm
 		)
 
 	@agent
 	def creative_content_creator(self) -> Agent:
 		return Agent(
 			config=self.agents_config['creative_content_creator'],
+			max_iter=10,
 			verbose=True,
 			memory=False,
+			# llm = llm
 		)
 
 	@task
@@ -101,11 +116,11 @@ class MarketingPostsCrew():
 
 	@crew
 	def crew(self) -> Crew:
-		"""Creates the MarketingPosts crew"""
+		"""创建营销帖子团队"""
 		return Crew(
-			agents=self.agents, # Automatically created by the @agent decorator
-			tasks=self.tasks, # Automatically created by the @task decorator
+			agents=self.agents, # 由 @agent 装饰器自动创建
+			tasks=self.tasks, # 由 @task 装饰器自动创建
 			process=Process.sequential,
 			verbose=2,
-			# process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
+			# process=Process.hierarchical, # 如果您想改用它 https://aipmai.theforage.cn/how-to/Hierarchical/
 		)

@@ -1,0 +1,32 @@
+research_task:
+  description: >
+    对参与即将召开的会议的每个人和公司进行全面研究。 收集有关近期新闻、成就、专业背景和任何相关业务活动的信息。
+    参与者：{meeting_participants}
+    会议背景：{meeting_context}
+  expected_output: >
+    一份详细的报告，语言为中文，总结了有关每个参与者和公司的关键发现，突出了可能与会议相关的信息。
+
+industry_analysis_task:
+  description: >
+    分析与会议背景相关的当前行业趋势、挑战和机遇。 考虑市场报告、近期发展和专家意见，以全面概述行业格局。
+    参与者：{meeting_participants}
+    会议背景：{meeting_context}
+  expected_output: >
+    一项有见地的分析，语言为中文，确定了主要趋势、潜在挑战和战略机遇。
+
+meeting_strategy_task:
+  description: >
+    根据已进行的研究和行业分析，制定战略性谈话要点、问题和讨论角度。
+    会议背景：{meeting_context}
+    会议目标：{meeting_objective}
+  expected_output: >
+    完整的报告，语言为中文，其中包含关键谈话要点列表，以及为帮助在会议期间实现会议目标而提出的战略性问题。
+
+summary_and_briefing_task:
+  description: >
+    将所有研究结果、行业分析和战略谈话要点汇编成一份简洁、全面的会议简报文件。
+    确保简报易于理解，并为会议参与者提供所有必要的信息和策略。
+    会议背景：{meeting_context}
+    会议目标：{meeting_objective}
+  expected_output: >
+    一份结构良好的简报文件，语言为中文，其中包括参与者简介、行业概况、谈话要点和战略建议等部分。

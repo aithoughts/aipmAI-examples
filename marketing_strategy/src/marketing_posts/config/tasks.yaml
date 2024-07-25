@@ -1,42 +1,35 @@
 research_task:
   description: >
-    Conduct a thorough research about the customer and competitors in the context
-    of {customer_domain}.
-    Make sure you find any interesting and relevant information given the
-    current year is 2024.
-    We are working with them on the following project: {project_description}.
+    在 {customer_domain} 的背景下，对客户和竞争对手进行全面研究。
+    确保您找到任何有趣且相关的信息，因为当前年份是 2024 年。
+    我们正在与他们合作开展以下项目：{project_description}。
   expected_output: >
-    A complete report on the customer and their customers and competitors,
-    including their demographics, preferences, market positioning and audience engagement.
+    一份关于客户及其客户和竞争对手的完整中文版报告，包括他们的人口统计、偏好、市场定位和受众参与度。
 
 project_understanding_task:
   description: >
-    Understand the project details and the target audience for
-    {project_description}.
-    Review any provided materials and gather additional information as needed.
+    了解 {project_description} 的项目细节和目标受众。
+    审查提供的任何材料并根据需要收集其他信息。
   expected_output: >
-    A detailed summary of the project and a profile of the target audience.
+    项目的详细中文版摘要和目标受众的中文版概况。
 
 marketing_strategy_task:
   description: >
-    Formulate a comprehensive marketing strategy for the project
-    {project_description} of the customer {customer_domain}.
-    Use the insights from the research task and the project understanding
-    task to create a high-quality strategy.
+    为客户 {customer_domain} 的项目 {project_description} 制定全面的营销策略。
+    利用研究任务和项目理解任务中的见解来创建高质量的策略。
   expected_output: >
-    A detailed marketing strategy document that outlines the goals, target
-    audience, key messages, and proposed tactics, make sure to have name, tatics, channels and KPIs
+    一份详细的营销策略中文版文档，概述目标、目标受众、关键信息和建议的策略，确保包含名称、策略、渠道和关键绩效指标。
 
 campaign_idea_task:
   description: >
-    Develop creative marketing campaign ideas for {project_description}.
-    Ensure the ideas are innovative, engaging, and aligned with the overall marketing strategy.
+    为 {project_description} 开发创意营销活动方案。
+    确保这些方案具有创新性、吸引力并且与整体营销策略保持一致。
   expected_output: >
-    A list of 5 campaign ideas, each with a brief description and expected impact.
+    5 个活动方案的中文版列表，每个方案都包含简要描述和预期影响。
 
 copy_creation_task:
   description: >
-    Create marketing copies based on the approved campaign ideas for {project_description}.
-    Ensure the copies are compelling, clear, and tailored to the target audience.
+    根据 {project_description} 批准的活动方案创建营销文案。
+    确保文案引人入胜、清晰明了，并针对目标受众量身定制。
   expected_output: >
-    Marketing copies for each campaign idea.
+    每个活动方案的中文版营销文案。

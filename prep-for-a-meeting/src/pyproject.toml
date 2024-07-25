@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "meeting_preparation"
+version = "0.1.0"
+description = "aipm-examples using crewAI"
+authors = ["aithoughts <ai.flyingwheel@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<=3.13"
+aipmai = { extras = ["tools"], version = "0.41.0" }
+aipmai-tools = "0.4.26"
+
+[tool.poetry.scripts]
+meeting_preparation = "meeting_preparation.main:run"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
