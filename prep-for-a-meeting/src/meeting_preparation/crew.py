@@ -6,7 +6,7 @@ from crewai.project import CrewBase, agent, crew, task
 # from marketing_posts.tools.custom_tool import MyCustomTool
 
 # 查看我们的工具文档以获取有关如何使用它们的更多信息
-from crewai_tools import EXASearchTool
+from crewai_tools import SerperDevTool
 from pydantic import BaseModel, Field
 
 # 取消注释以下行以使用Ollama
@@ -15,7 +15,7 @@ from pydantic import BaseModel, Field
 # os.environ["OPENAI_API_KEY"] = "NA"
 
 # llm = Ollama(
-#     model = "mistral",
+#     model = "llama3.1",
 #     base_url = "http://localhost:11434")
 
 @CrewBase
@@ -27,8 +27,9 @@ class MeetingPreparationCrew():
 	def research_agent(self) -> Agent:
 		return Agent(
 			config=self.agents_config['research_agent'],
-			tools=[EXASearchTool()],
+			tools=[SerperDevTool()],
 			verbose=True,
+			max_rpm=15,
 			memory=False,
 			# llm = llm
 		)
@@ -37,8 +38,9 @@ class MeetingPreparationCrew():
 	def industry_analysis_agent(self) -> Agent:
 		return Agent(
 			config=self.agents_config['industry_analysis_agent'],
-			tools=[EXASearchTool()],
+			tools=[SerperDevTool()],
 			verbose=True,
+			max_rpm=15,
 			memory=False,
 			# llm = llm
 		)
@@ -47,8 +49,9 @@ class MeetingPreparationCrew():
 	def meeting_strategy_agent(self) -> Agent:
 		return Agent(
 			config=self.agents_config['meeting_strategy_agent'],
-			tools=[EXASearchTool()],
+			# tools=[SerperDevTool()],
 			verbose=True,
+			max_rpm=15,
 			memory=False,
 			# llm = llm
 		)
@@ -57,8 +60,9 @@ class MeetingPreparationCrew():
 	def summary_and_briefing_agent(self) -> Agent:
 		return Agent(
 			config=self.agents_config['summary_and_briefing_agent'],
-			tools=[EXASearchTool()],
+			# tools=[SerperDevTool()],
 			verbose=True,
+			max_rpm=15,
 			memory=False,
 			# llm = llm
 		)
@@ -69,14 +73,16 @@ class MeetingPreparationCrew():
 	def research_task(self) -> Task:
 		return Task(
 			config=self.tasks_config['research_task'],
-			agent=self.research_agent()
+			agent=self.research_agent(),
+			async_execution=True
 		)
 
 	@task
 	def industry_analysis_task(self) -> Task:
 		return Task(
 			config=self.tasks_config['industry_analysis_task'],
-			agent=self.industry_analysis_agent()
+			agent=self.industry_analysis_agent(),
+			async_execution=True
 		)
 
 	@task
